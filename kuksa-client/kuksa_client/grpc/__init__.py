@@ -474,14 +474,16 @@ class BaseVSSClient:
         self,
         host: str,
         port: int,
-        authorization_header: Optional[str] = "Unauthenticated",
+        token: Optional[str] = None,
         root_certificates: Optional[Path] = None,
         private_key: Optional[Path] = None,
         certificate_chain: Optional[Path] = None,
         *,
         ensure_startup_connection: bool = True,
     ):
-        self.authorization_header = authorization_header
+        # Do we want clients to know about the "Bearer" keyword, or is it better to
+        # support token as parameter like here?
+        self.authorization_header = self.get_authorization_header(token)
         self.target_host = f'{host}:{port}'
         self.root_certificates = root_certificates
         self.private_key = private_key
@@ -582,7 +584,9 @@ class BaseVSSClient:
             metadata = dict(metadata)
         else:
             metadata = dict()
-        metadata["authorization"] = header
+        # I assume we do not want to overwrite "authorization" if it is already there?
+        if (header is not None) and not "authorization" in metadata:
+            metadata["authorization"] = header
         return list(metadata.items())
 
 
@@ -822,14 +826,19 @@ class VSSClient(BaseVSSClient):
         except RpcError as exc:
             raise VSSClientError.from_grpc_error(exc) from exc
 
+    def get_authorization_header(self, token: Optional[str]) -> Optional[str]:
+         if token is None:
+             return None
+         return "Bearer " + token
+
     def authorize(self, *, token: str, **rpc_kwargs) -> str:
         rpc_kwargs["metadata"] = self.generate_metadata_header(
-            metadata=rpc_kwargs.get("metadata"), header="Bearer " + token)
+            metadata=rpc_kwargs.get("metadata"), header=self.get_authorization_header(token))
         server_info = self.get_server_info(**rpc_kwargs)
         if server_info.name == "Unauthenticated":
             return "Authorization failed not setting token"
         else:
-            self.authorization_header = "Bearer " + token
+            self.authorization_header = self.get_authorization_header(token)
             return "Authenticated"
 
     def get_server_info(self, **rpc_kwargs) -> ServerInfo:
@@ -838,6 +847,8 @@ class VSSClient(BaseVSSClient):
             rpc_kwargs
                 grpc.*MultiCallable kwargs e.g. timeout, metadata, credentials.
         """
+        rpc_kwargs["metadata"] = self.generate_metadata_header(
+            rpc_kwargs.get("metadata"))
         req = val_pb2.GetServerInfoRequest()
         logger.debug("%s: %s", type(req).__name__, req)
         try:
