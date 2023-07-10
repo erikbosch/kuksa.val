@@ -20,7 +20,7 @@ decorator==5.1.1
     # via jsonpath-ng
 dill==0.3.6
     # via pylint
-exceptiongroup==1.0.4
+exceptiongroup==1.1.2
     # via pytest
 grpcio==1.54.2
     # via grpcio-tools
