@@ -24,7 +24,7 @@ exceptiongroup==1.0.4
     # via pytest
 grpcio==1.54.2
     # via grpcio-tools
-grpcio-tools==1.54.2
+grpcio-tools==1.56.0
     # via kuksa-client (setup.cfg)
 iniconfig==1.1.1
     # via pytest
