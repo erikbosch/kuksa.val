@@ -8,7 +8,7 @@
 
 # Note: This dockerfile needs to be executed one level above in the root folder
 
-FROM python:3.10-alpine as build
+FROM python:3.11-alpine as build
 RUN apk update && apk add git alpine-sdk linux-headers
 COPY kuksa-client /kuksa.val/kuksa-client/
 COPY kuksa_certificates /kuksa.val/kuksa_certificates/
@@ -20,7 +20,7 @@ RUN python3 -m build
 RUN mkdir /kuksa-client
 RUN pip install --target /kuksa-client --no-cache-dir dist/*.whl
 
-FROM python:3.10-alpine
+FROM python:3.11-alpine
 
 RUN apk add --no-cache libstdc++
 COPY --from=build /kuksa-client /kuksa-client
