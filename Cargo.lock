@@ -182,6 +182,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
+name = "autotools"
+version = "0.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aef8da1805e028a172334c3b680f93e71126f2327622faef2ec3d893c0a4ad77"
+dependencies = [
+ "cc",
+]
+
+[[package]]
 name = "axum"
 version = "0.6.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -269,7 +278,7 @@ checksum = "a246e68bb43f6cd9db24bea052a53e40405417c5fb372e3d1a8a7f770a564ef5"
 dependencies = [
  "memchr",
  "once_cell",
- "regex-automata",
+ "regex-automata 0.1.10",
  "serde",
 ]
 
@@ -525,6 +534,7 @@ version = "0.3.1"
 dependencies = [
  "prost",
  "prost-types",
+ "protobuf-src",
  "tonic",
  "tonic-build",
 ]
@@ -1770,7 +1780,7 @@ version = "0.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8263075bb86c5a1b1427b5ae862e8889656f126e9f77c484496e8b47cf5c5558"
 dependencies = [
- "regex-automata",
+ "regex-automata 0.1.10",
 ]
 
 [[package]]
@@ -2184,6 +2194,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "protobuf-src"
+version = "1.1.0+21.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c7ac8852baeb3cc6fb83b93646fb93c0ffe5d14bf138c945ceb4b9948ee0e3c1"
+dependencies = [
+ "autotools",
+]
+
+[[package]]
 name = "quote"
 version = "1.0.28"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2270,13 +2289,14 @@ dependencies = [
 
 [[package]]
 name = "regex"
-version = "1.8.3"
+version = "1.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "81ca098a9821bd52d6b24fd8b10bd081f47d39c22778cafaa75a2857a62c6390"
+checksum = "b2eae68fc220f7cf2532e4494aded17545fce192d59cd996e0fe7887f4ceb575"
 dependencies = [
  "aho-corasick 1.0.1",
  "memchr",
- "regex-syntax 0.7.2",
+ "regex-automata 0.3.2",
+ "regex-syntax 0.7.3",
 ]
 
 [[package]]
@@ -2289,6 +2309,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "regex-automata"
+version = "0.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "83d3daa6976cffb758ec878f108ba0e062a45b2d6ca3a2cca965338855476caf"
+dependencies = [
+ "aho-corasick 1.0.1",
+ "memchr",
+ "regex-syntax 0.7.3",
+]
+
+[[package]]
 name = "regex-syntax"
 version = "0.6.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2296,9 +2327,9 @@ checksum = "f162c6dd7b008981e4d40210aca20b4bd0f9b60ca9271061b07f78537722f2e1"
 
 [[package]]
 name = "regex-syntax"
-version = "0.7.2"
+version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "436b050e76ed2903236f032a59761c1eb99e1b0aead2c257922771dab1fc8c78"
+checksum = "2ab07dc67230e4a4718e70fd5c20055a4334b121f1f9db8fe63ef39ce9b8c846"
 
 [[package]]
 name = "ring"

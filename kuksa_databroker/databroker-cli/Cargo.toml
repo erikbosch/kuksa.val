@@ -37,5 +37,5 @@ clap = { workspace = true, features = [
     "env",
     "derive",
 ] }
-regex = "1.6.0"
+regex = "1.9.1"
 http = "0.2.8"
