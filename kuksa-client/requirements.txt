@@ -4,7 +4,7 @@
 #
 #    pip-compile --resolver=backtracking setup.cfg
 #
-attrs==22.1.0
+attrs==23.1.0
     # via cmd2
 cmd2==1.5.0
     # via kuksa-client (setup.cfg)

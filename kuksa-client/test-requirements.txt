@@ -6,7 +6,7 @@
 #
 astroid==2.12.13
     # via pylint
-attrs==22.1.0
+attrs==23.1.0
     # via
     #   cmd2
     #   pytest
