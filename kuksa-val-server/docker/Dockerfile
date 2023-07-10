@@ -5,7 +5,7 @@
 # accompanies this distribution, and is available at
 # http://www.eclipse.org/org/documents/edl-v10.php
 
-FROM alpine:3.11 as build
+FROM alpine:3.18 as build
 
 LABEL maintainer="Sebastian Schildt <sebastian.schildt@de.bosch.com>"
 
@@ -47,7 +47,7 @@ RUN ls
 RUN /kuksa.val/kuksa-val-server/docker/collect-deployment-artifacts.sh
 
 
-FROM alpine:3.11
+FROM alpine:3.18
 
 COPY --from=build /deploy /kuksa.val
 WORKDIR /kuksa.val
