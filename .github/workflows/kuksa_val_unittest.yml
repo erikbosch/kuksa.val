@@ -26,7 +26,7 @@ jobs:
         name: unittest
         path: ${{github.workspace}}/out
     - name: Publish Test Report
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         files: ${{github.workspace}}/out/all_targets.info
         flags: unittests # optional
