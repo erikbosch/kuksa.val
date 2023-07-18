@@ -12,7 +12,7 @@ jobs:
     
     steps:    
     - name: Try delete kuksa.val databroker PR container from GHCR
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -22,7 +22,7 @@ jobs:
 
 
     - name: Try delete kuksa.val server PR container from GHCR
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -32,7 +32,7 @@ jobs:
 
 
     - name: Try delete kuksa.val client PR container from GHCR
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -42,7 +42,7 @@ jobs:
          
    ##One time cleanup from previous failures :)
     - name: Try delete kvs 347
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -51,7 +51,7 @@ jobs:
          tag: pr-347
          
     - name: Try delete db 344
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -60,7 +60,7 @@ jobs:
          tag: pr-344
          
     - name: Try delete kvs 283
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -69,7 +69,7 @@ jobs:
          tag: pr-283
 
     - name: Try delete kvs 344
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
@@ -78,7 +78,7 @@ jobs:
          tag: pr-344
              
     - name: Try delete kvs 245
-      uses: bots-house/ghcr-delete-image-action@v1.0.0
+      uses: bots-house/ghcr-delete-image-action@v1.1.0
       continue-on-error: true
       with:
          owner: eclipse
