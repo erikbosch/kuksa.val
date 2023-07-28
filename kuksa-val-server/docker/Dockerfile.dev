@@ -6,7 +6,7 @@
 # http://www.eclipse.org/org/documents/edl-v10.php
 # Quick docker for doing development
 
-FROM ubuntu:20.04 as build
+FROM ubuntu:22.04 as build
 
 RUN apt-get  update && DEBIAN_FRONTEND="noninteractive" apt-get -y install libssl-dev  \
                         pkg-config \
