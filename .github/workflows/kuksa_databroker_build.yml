@@ -35,8 +35,13 @@ jobs:
     name: Linting and Testing
     runs-on: ubuntu-latest
 
+
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Fetch everything to get tags working as expected
+          fetch-depth: 0
+          submodules: 'true'
 
       # Seems not neccessary on ubuntu-latest runner
       #- uses: dtolnay/rust-toolchain@stable
@@ -55,7 +60,9 @@ jobs:
         run: cargo fmt -- --check
       - name: cargo clippy
         working-directory: ${{github.workspace}}
-        run: cargo clippy --all-targets -- -W warnings -D warnings
+        run: |
+          cargo clean
+          cargo clippy --all-targets -- -W warnings -D warnings
       - name: cargo clippy (feature viss)
         working-directory: ${{github.workspace}}
         run: cargo clippy --features viss --all-targets -- -W warnings -D warnings
